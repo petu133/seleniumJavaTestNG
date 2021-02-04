@@ -1,0 +1,53 @@
+package pages;
+
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class PageSearch {
+	private WebDriver driver;
+	private By searchField;
+	private By searchButton;
+	private By prodName;
+	private By prodList;
+	private int cantProd;
+	private int cantProdList;
+	
+	
+	public PageSearch (WebDriver driver) {
+		this.driver = driver;
+		searchField= By.id("search_query_top");
+		searchButton= By.name("submit_search");
+		prodName= By.className("product-name");
+		prodList= By.xpath("//*[@id=\"center_column\"]/ul");
+		}
+			
+			public void search (String searchText){
+				driver.findElement(searchField).sendKeys(searchText);
+				driver.findElement(searchButton).click();
+			}
+		
+			public void search () {driver.findElement(searchButton).submit();}
+			
+			public void searchVerifCant (String searchText, int cantProd){
+				driver.findElement(searchField).sendKeys(searchText);
+				driver.findElement(searchButton).click();
+				this.cantProd = cantProd;
+			}
+			
+			public int cantProd() {return cantProd;}
+		
+			public void productList() {
+				WebDriverWait productList = new WebDriverWait(driver,4);
+				WebElement productListCont = productList.until(ExpectedConditions.presenceOfElementLocated(prodList));
+				List<WebElement> webElementList = productListCont.findElements(prodName);
+				cantProdList = webElementList.size();
+			}
+			
+			public int cantProdList(){return cantProdList;}
+}
