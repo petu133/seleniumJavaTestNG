@@ -15,6 +15,7 @@ public class TestHomeStatus extends TestSetup {
 
 	@Test(description="Verificar que los precios en oferta en la pagina Home se muestran en un recuadro color determinado",enabled=false)
 	public void verifColor(){
+		//sacar de aca el by
 		List<WebElement> capture = (List<WebElement>) driver.findElements(By.className("price-percent-reduction"));
 		String setColor="rgba(241, 51, 64, 1)";
 		for (int i = 0; i<capture.size();i++) {
@@ -22,22 +23,21 @@ public class TestHomeStatus extends TestSetup {
 		}
 	}
 	
-	@Test(description="Verificando formato de elementos en el bloque inferior de informacion CMS", timeOut=5000, enabled=false)
+	@Test(description="Verificando formato de elementos en el bloque inferior de informacion CMS", timeOut=5000, enabled=true)
 	public void bloqueInf() {
 		PageHome blockCD = new PageHome(driver);
 		SoftAssert check = new SoftAssert();
-		
-		//blockCD.setupCmsInfo("#f2f2f2", "white");
-		//FALTARIA LOS ASSERT y LA NAVEGACION para lo que es el formato 
-		//de fondo para el bloque cms y el recuadro blanco selenium . HACERLO!
+		blockCD.setupCmsInfo("242, 242, 242, 1", "#ffffff");
+		check.assertEquals(blockCD.blockColor(), "rgba("+blockCD.expectedColorBlock()+")","El color de fondo de bloque debe coincidir con el ingresado como parametro");
+		check.assertEquals(blockCD.frameColor(), blockCD.expectedColorFrame(),"El color de fondo de cuadro frame selenium debe coincidir con el ingresado como parametro");
 		
 		
 		blockCD.setupCmsInfo("21px", "13px", "#333333");
-		check.assertEquals(blockCD.titleCB().getCssValue("font-size"),blockCD.pxTitle(), "Pixeles que se observa en el navegador debe coincidir con el parametro ingresado para el titulo del bloque");
-		check.assertEquals(blockCD.subTitleCB().getCssValue("font-size"),blockCD.pxSub(), "Pixeles que se observa en el navegador debe coincidir con el parametro ingresado para el subtitulo del bloque");
+		check.assertEquals(blockCD.titleCB().getCssValue("font-size"),blockCD.pxTitle(), "Pixeles que se observa en el navegador debe coincidir con el parametro ingresado para el titulo del bloque inferior derecho de informacion");
+		check.assertEquals(blockCD.subTitleCB().getCssValue("font-size"),blockCD.pxSub(), "Pixeles que se observa en el navegador debe coincidir con el parametro ingresado para el subtitulo del bloque inferior derecho de informacion");
 		String colorRgb = blockCD.subTitleCB().getCssValue("color");
 		String colorHex = Color.fromString(colorRgb).asHex();
-		check.assertEquals(colorHex, blockCD.colorFontSub(),"Color de fuente que se observa en el navegador debe coincidir con el parametro ingresado para el texto del bloque");
+		check.assertEquals(colorHex, blockCD.colorFontSub()," Color de fuente que se observa en el navegador debe coincidir con el parametro ingresado para el texto del bloque inferior derecho de informacion");
 		check.assertAll();
 	}
 	

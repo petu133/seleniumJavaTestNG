@@ -3,15 +3,14 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.Color;
 public class PageHome {
 
 	private WebDriver driver;
 	private By idCont;
-	private By linkFrame;
+	private By xpathFrame;
 	private By xpathCDTitle;
 	private By xpathCDSub;
-	private By xpathCDtext;
 	private String expectedColorBlock;
 	private String expectedColorFrame;
 	private String expectedPxCBTitle;
@@ -28,33 +27,35 @@ public class PageHome {
 	public PageHome (WebDriver driver) {
 		this.driver = driver;
 		idCont = By.id("cmsinfo_block");
-		linkFrame = By.linkText("http://www.seleniumframework.com");
+		xpathFrame = By.xpath("//*[@id=\"cmsinfo_block\"]/div[1]/ul/li[2]/div/p/a");
 		xpathCDTitle = By.xpath("//*[@id=\"cmsinfo_block\"]/div[2]/h3");
 		xpathCDSub = By.xpath("//*[@id=\"cmsinfo_block\"]/div[2]/p[1]/strong");
 		
 	}
-	
-	public void setupCmsInfo(String colorBlock, String colorFrame) {
-		expectedColorBlock = colorBlock;
-		expectedColorFrame = colorFrame;
+	public void setupCmsInfo(String colorBlockRgba, String colorFrameHex) {
+		expectedColorBlock = colorBlockRgba;
+		expectedColorFrame = colorFrameHex;
 		block = driver.findElement(idCont);
-		frame = driver.findElement(linkFrame);
-		blockColor = block.getCssValue("background");
-		frameColor = frame.getCssValue("background");
+		frame = driver.findElement(xpathFrame);
+		blockColor = block.getCssValue("background-color");
+		String frameRgba = frame.getCssValue("background-color");
+		frameColor = Color.fromString(frameRgba).asHex();
 		
 	}
-	
-    public void setupCmsInfo(String pxCBTitle, String pxCBSub, String colorCBSub) {
+	public void setupCmsInfo(String pxCBTitle, String pxCBSub, String colorCBSub) {
 			expectedPxCBTitle = pxCBTitle;
 			expectedPxCBSub = pxCBSub;
 			expectedColorCBSub = colorCBSub;
 			titleCB = driver.findElement(xpathCDTitle);
 			subTitleCB = driver.findElement(xpathCDSub);
 	}
-    
     public WebElement titleCB() {return titleCB;}
     public WebElement subTitleCB() {return subTitleCB;}
     public String pxTitle() {return expectedPxCBTitle;}
     public String pxSub() {return expectedPxCBSub;}
     public String colorFontSub() {return expectedColorCBSub;}
+    public String blockColor() {return blockColor;}
+    public String frameColor() {return frameColor;}
+    public String expectedColorBlock() {return expectedColorBlock;}
+    public String expectedColorFrame() {return expectedColorFrame;}
 }

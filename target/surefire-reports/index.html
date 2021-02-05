@@ -91,7 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">4 methods,   4 passed</span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -102,22 +102,7 @@
                     <div class="method-list-content passed suite-Command_line_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="tests.TestLogin" class="method navigator-link" hash-for-method="loginInvalidMail">loginInvalidMail</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="tests.TestLogin" class="method navigator-link" hash-for-method="loginMailRequire">loginMailRequire</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="tests.TestSearch" class="method navigator-link" hash-for-method="searchEmpty">searchEmpty</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Command_line_suite" title="tests.TestSearch" class="method navigator-link" hash-for-method="searchShirt">searchShirt</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Command_line_suite" title="tests.TestHomeStatus" class="method navigator-link" hash-for-method="bloqueInf">bloqueInf</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Command_line_suite -->
@@ -135,51 +120,16 @@
           <div class="suite-Command_line_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.TestLogin</span>
+              <span class="class-name">tests.TestHomeStatus</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="loginInvalidMail">
-                  </a> <!-- loginInvalidMail -->
-                  <span class="method-name">loginInvalidMail</span>
+                  <a name="bloqueInf">
+                  </a> <!-- bloqueInf -->
+                  <span class="method-name">bloqueInf</span>
                   <em>
-(Login con usuario y password incorrectos debe devolver texto email invalido	)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="loginMailRequire">
-                  </a> <!-- loginMailRequire -->
-                  <span class="method-name">loginMailRequire</span>
-                  <em>
-(Login fallido sin ingreso de usuario y password devuelve como texto el requerimiento de mail en la cuenta )                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Command_line_suite-class-passed -->
-          <div class="suite-Command_line_suite-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">tests.TestSearch</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="searchEmpty">
-                  </a> <!-- searchEmpty -->
-                  <span class="method-name">searchEmpty</span>
-                  <em>
-(Verificar que la busqueda sin dar un parametro retorna el texto "Please enter a search keyword" )                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="searchShirt">
-                  </a> <!-- searchShirt -->
-                  <span class="method-name">searchShirt</span>
-                  <em>
-(Verificar que el resultado de la busqueda del producto devuelve el texto "SHIRT")                  </em>
+(Verificando formato de elementos en el bloque inferior de informacion CMS)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -239,28 +189,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(4);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'loginMailRequire')
-data.setCell(0, 2, 'tests.TestLogin')
-data.setCell(0, 3, 9577);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'loginInvalidMail')
-data.setCell(1, 2, 'tests.TestLogin')
-data.setCell(1, 3, 4197);
-data.setCell(2, 0, 2)
-data.setCell(2, 1, 'searchShirt')
-data.setCell(2, 2, 'tests.TestSearch')
-data.setCell(2, 3, 2375);
-data.setCell(3, 0, 3)
-data.setCell(3, 1, 'searchEmpty')
-data.setCell(3, 2, 'tests.TestSearch')
-data.setCell(3, 3, 1987);
+data.setCell(0, 1, 'bloqueInf')
+data.setCell(0, 2, 'tests.TestHomeStatus')
+data.setCell(0, 3, 176);
 window.suiteTableData['Command_line_suite']= { tableData: data, tableDiv: 'times-div-Command_line_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 18 seconds</span>
+              <span class="suite-total-time">Total running time: 176 ms</span>
               <div id="times-div-Command_line_suite">
               </div> <!-- times-div-Command_line_suite -->
             </div> <!-- times-div -->
@@ -275,9 +213,18 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Command_line_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">7 ignored methods</span>
+            <span class="header-content">10 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">tests.TestLogin</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">loginInvalidMail</span>
+                <br/>
+                <span class="ignored-method-name">loginMailRequire</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
             <div class="ignored-class-div">
               <span class="ignored-class-name">tests.TestMisc</span>
               <div class="ignored-methods-div">
@@ -290,14 +237,16 @@ return data;
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">verifColor</span>
                 <br/>
-                <span class="ignored-method-name">bloqueInf</span>
-                <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
             <div class="ignored-class-div">
               <span class="ignored-class-name">tests.TestSearch</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">searchDress</span>
+                <br/>
+                <span class="ignored-method-name">searchShirt</span>
+                <br/>
+                <span class="ignored-method-name">searchEmpty</span>
                 <br/>
                 <span class="ignored-method-name">searchCantShirt</span>
                 <br/>
@@ -315,57 +264,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.TestLogin</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.TestHomeStatus</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">loginInvalidMail</span>
-                <span class="method-start">17483 ms</span>
+                <span class="method-name">bloqueInf</span>
+                <span class="method-start">16513 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">21681 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp</span>
-                <span class="method-start">21773 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">loginMailRequire</span>
-                <span class="method-start">42699 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">52277 ms</span>
-              </div> <!-- configuration-method after -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">tests.TestSearch</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp</span>
-                <span class="method-start">52401 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">searchEmpty</span>
-                <span class="method-start">69307 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">71294 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp</span>
-                <span class="method-start">71394 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">searchShirt</span>
-                <span class="method-start">87828 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">90204 ms</span>
+                <span class="method-start">16692 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
