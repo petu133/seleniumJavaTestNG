@@ -1,4 +1,4 @@
-package tests;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ public class PageDetails {
 	private String productRgb;
 	private String expectedColor;;
 
-	PageDetails (WebDriver driver){
+	public PageDetails (WebDriver driver){
 		this.driver = driver;
 		xpathProduct = By.xpath("//*[@id=\"homefeatured\"]/li[1]/div/div[2]/h5/a");
 		idColor = By.id("color_13");

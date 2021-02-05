@@ -15,8 +15,14 @@ public class PageSearch {
 	private By searchButton;
 	private By prodName;
 	private By prodList;
+	private By shirtField;
+	private By emptyField;
 	private int cantProd;
 	private int cantProdList;
+	private WebElement xpathSearchEmpty;
+	private WebElement shirtSearch;
+	
+	
 	
 	
 	public PageSearch (WebDriver driver) {
@@ -25,14 +31,27 @@ public class PageSearch {
 		searchButton= By.name("submit_search");
 		prodName= By.className("product-name");
 		prodList= By.xpath("//*[@id=\"center_column\"]/ul");
+		shirtField=By.className("lighter");
+		emptyField=By.xpath("//*[@id=\"center_column\"]/p");
 		}
 			
 			public void search (String searchText){
 				driver.findElement(searchField).sendKeys(searchText);
 				driver.findElement(searchButton).click();
+					if (searchText =="shirt") {
+						shirtSearch= driver.findElement(shirtField);
+					}
 			}
+			
+			
+			public WebElement shirtSearch() {return shirtSearch;}
 		
-			public void search () {driver.findElement(searchButton).submit();}
+			public void search () {
+				driver.findElement(searchButton).submit();
+				xpathSearchEmpty = driver.findElement(emptyField);
+			}
+			
+			public WebElement emptyBoxText() {return xpathSearchEmpty;}
 			
 			public void searchVerifCant (String searchText, int cantProd){
 				driver.findElement(searchField).sendKeys(searchText);
