@@ -5,6 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class PageLogin {
+	private final static String SINGIN_BUTTON_DOM = "//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a";
+	private final static String USER_FIELD_DOM = "//*[@id=\"email\"]";
+	private final static String PASS_FIELD_DOM = "//*[@id=\"passwd\"]";
+	private final static String LOGGIN_BUTTON_DOM = "//*[@id=\"SubmitLogin\"]/span";
+	private final static String INVALID_MAIL_DOM = "//*[@id=\"center_column\"]/div[1]/ol/li";
+	private final static String REQUIRE_MAIL_DOM = "//*[@id=\"center_column\"]/div[1]/ol/li";
 	private WebDriver driver;
 	private By singInButton;
 	private By userField;
@@ -18,12 +24,12 @@ public class PageLogin {
 	
 	public PageLogin (WebDriver driver) {
 		this.driver = driver;
-		singInButton = By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a");
-		userField = By.xpath("//*[@id=\"email\"]");
-		passField = By.xpath("//*[@id=\"passwd\"]");
-		loginButton = By.xpath("//*[@id=\"SubmitLogin\"]/span");
-		invalidMailXpath = By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
-		requireMailXpath = By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
+		singInButton = By.xpath(SINGIN_BUTTON_DOM);
+		userField = By.xpath(USER_FIELD_DOM);
+		passField = By.xpath(PASS_FIELD_DOM);
+		loginButton = By.xpath(LOGGIN_BUTTON_DOM);
+		invalidMailXpath = By.xpath(INVALID_MAIL_DOM);
+		requireMailXpath = By.xpath(REQUIRE_MAIL_DOM);
 	}
 	
 	public void setLogin (String user, String pass) {

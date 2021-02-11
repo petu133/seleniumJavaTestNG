@@ -7,7 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageDetails {
-
+	private static final String PRODUCT_DOM = "//*[@id=\"homefeatured\"]/li[1]/div/div[2]/h5/a";
+	private static final String COLOR_DOM = "color_13";
 	private WebDriver driver;
 	private By xpathProduct;
 	private By idColor;
@@ -18,11 +19,11 @@ public class PageDetails {
 
 	public PageDetails (WebDriver driver){
 		this.driver = driver;
-		xpathProduct = By.xpath("//*[@id=\"homefeatured\"]/li[1]/div/div[2]/h5/a");
-		idColor = By.id("color_13");
+		xpathProduct = By.xpath(PRODUCT_DOM);
+		idColor = By.id(COLOR_DOM);
 	}
 	
-	public void productDetailColor(String expectedColor){
+	public void setProductDetailColor(String expectedColor){
 		this.expectedColor=expectedColor;
 		driver.findElement(xpathProduct).click();
 		WebDriverWait wait = new WebDriverWait (driver, 6);
