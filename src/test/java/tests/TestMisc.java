@@ -7,7 +7,7 @@ import pages.PageDetails;
 
 public class TestMisc extends TestSetup {
 
-	@Test(description="Verificacion del color que muestra, por defecto,  el producto en su detalle",enabled=false)
+	@Test(description="Verificacion del color que muestra, por defecto,  el producto en su detalle",enabled=true)
 	public void productDet(){
 		PageDetails product = new PageDetails(driver);
 		product.setProductDetailColor("rgba(243, 156, 17, 1)");
