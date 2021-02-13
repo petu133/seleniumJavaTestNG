@@ -13,12 +13,13 @@ public class PageHome {
 	private final static String XPATH_CDTITLE_DOM = "//*[@id=\"cmsinfo_block\"]/div[2]/h3";
 	private final static String XPATH_CSSUB_DOM = "//*[@id=\"cmsinfo_block\"]/div[2]/p[1]/strong";
 	private final static String CLASS_PRICEOFF_DOM = "price-percent-reduction";
-	private WebDriver driver;
+	private boolean colorCoincidence;
 	private By idCont;
 	private By xpathFrame;
 	private By xpathCDTitle;
 	private By xpathCDSub;
 	private By classPriceOffColor;
+	private List<WebElement> capture;
 	private String expectedColorBlock;
 	private String expectedColorFrame;
 	private String expectedPxCBTitle;
@@ -27,11 +28,14 @@ public class PageHome {
 	private String setColor;
 	private String blockColor;
 	private String frameColor;
+	private String cssFontSizeTitleCB;
+	private String cssFontSizeSubTitleCB;
+	private String cssColorSubTitleCB;
+	private WebDriver driver;
 	private WebElement titleCB;
 	private WebElement subTitleCB;
 	private WebElement block;
 	private WebElement frame;
-	private List<WebElement> capture;
 	
 	public PageHome (WebDriver driver) {
 		this.driver = driver;
@@ -51,28 +55,48 @@ public class PageHome {
 		String frameRgba = frame.getCssValue("background-color");
 		frameColor = Color.fromString(frameRgba).asHex();
 	}
-	public String blockColor() {return blockColor;}
-    public String frameColor() {return frameColor;}
-    public String expectedColorBlock() {return expectedColorBlock;}
-    public String expectedColorFrame() {return expectedColorFrame;}
 	
 	public void setCmsInfo(String pxCBTitle, String pxCBSub, String colorCBSub) {
 		expectedPxCBTitle = pxCBTitle;
 		expectedPxCBSub = pxCBSub;
 		expectedColorCBSub = colorCBSub;
 		titleCB = driver.findElement(xpathCDTitle);
+		cssFontSizeTitleCB = titleCB.getCssValue("font-size");
 		subTitleCB = driver.findElement(xpathCDSub);
+		cssFontSizeSubTitleCB = subTitleCB.getCssValue("font-size");
+		cssColorSubTitleCB = subTitleCB.getCssValue("color");
 	}
-	public WebElement titleCB() {return titleCB;}
-	public WebElement subTitleCB() {return subTitleCB;}
-	public String pxTitle() {return expectedPxCBTitle;}
+	
+    public void setColorOffPrice(String color) {
+    	setColor = color;
+    	capture = driver.findElements(classPriceOffColor);
+    	int numAux = capture.size();
+    	int colorsIdem = 0;
+    		for (int colorIterator = 0 ; colorIterator<numAux ; colorIterator++) {
+	    		String captureVar = capture.get(colorIterator).getCssValue("background-color").toString();
+	    		if (captureVar.equalsIgnoreCase(setColor)){
+					colorsIdem++; 
+	    		}
+	    	}
+	    	if (colorsIdem == numAux) {
+	    	colorCoincidence = true;
+	    		} else { 
+	    		colorCoincidence = false;
+	    		}    		
+    	}
+    public boolean colorCoincidence() {return colorCoincidence;}
+    public List<WebElement> capture () {return capture;}
+    public String pxTitle() {return expectedPxCBTitle;}
 	public String pxSub() {return expectedPxCBSub;}
     public String colorFontSub() {return expectedColorCBSub;}
-    
-    public void setColorOffPrice(String color) {
-    	capture = driver.findElements(classPriceOffColor);
-    	setColor = color;
-    }
-    public List<WebElement> capture () {return capture;}
     public String priceColor() {return setColor;}
+    public String blockColor() {return blockColor;}
+    public String frameColor() {return frameColor;}
+    public String expectedColorBlock() {return expectedColorBlock;}
+    public String expectedColorFrame() {return expectedColorFrame;}
+    public String fontSizeTitleCB() {return cssFontSizeTitleCB;}
+    public String fontSizeSubTitleCB() {return cssFontSizeSubTitleCB;}
+    public String colorSubTitleCB() {return cssColorSubTitleCB;}  
+    public WebElement titleCB() {return titleCB;}
+	public WebElement subTitleCB() {return subTitleCB;}
 }

@@ -11,16 +11,16 @@ public class PageLogin {
 	private final static String LOGGIN_BUTTON_DOM = "//*[@id=\"SubmitLogin\"]/span";
 	private final static String INVALID_MAIL_DOM = "//*[@id=\"center_column\"]/div[1]/ol/li";
 	private final static String REQUIRE_MAIL_DOM = "//*[@id=\"center_column\"]/div[1]/ol/li";
-	private WebDriver driver;
 	private By singInButton;
 	private By userField;
 	private By passField;
 	private By loginButton;
 	private By invalidMailXpath;
 	private By requireMailXpath;
+	private String textMail;
+	private WebDriver driver;
 	private WebElement invalidMail;
 	private WebElement requireMail;
-	
 	
 	public PageLogin (WebDriver driver) {
 		this.driver = driver;
@@ -30,22 +30,23 @@ public class PageLogin {
 		loginButton = By.xpath(LOGGIN_BUTTON_DOM);
 		invalidMailXpath = By.xpath(INVALID_MAIL_DOM);
 		requireMailXpath = By.xpath(REQUIRE_MAIL_DOM);
-	}
+		}
 	
 	public void setLogin (String user, String pass) {
 		driver.findElement(singInButton).click();
 		driver.findElement(userField).sendKeys(user);
 		driver.findElement(passField).sendKeys(pass);
 		driver.findElement(loginButton).click();
-		if (user!="" && pass!="") {
-			invalidMail = driver.findElement(invalidMailXpath);
+			if (user!="" && pass!="") {
+				invalidMail = driver.findElement(invalidMailXpath);
+			}
+			if (user=="" && pass=="") {
+				requireMail = driver.findElement(requireMailXpath);
+				textMail = requireMail.getText();
+			}
 		}
-		if (user=="" && pass=="") {
-			requireMail = driver.findElement(requireMailXpath);
-		}
-		
-	}
 	
 	public WebElement invalidMail() {return invalidMail;}
-	public WebElement requiereMail() {return requireMail;}
+	public WebElement requireMail() {return requireMail;}
+	public String textMail() {return textMail;}
 }

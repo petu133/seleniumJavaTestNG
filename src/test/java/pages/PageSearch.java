@@ -1,8 +1,6 @@
 package pages;
 
-
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +16,6 @@ public class PageSearch {
 	private final static String PRODUCT_LISTDRESS_DOM = "product-count";
 	private final static String PRODUCT_NOTFOUND_DOM = "//*[@id=\"center_column\"]/p";
 	private final static String PRODUCT_WOMENFOUND_DOM = "#center_column > p";
-	private WebDriver driver;
 	private By searchField;
 	private By searchButton;
 	private By prodName;
@@ -26,16 +23,19 @@ public class PageSearch {
 	private By emptyField;
 	private By producListDress;
 	private By productNFound;
-	private List<WebElement> productCount;
-	private WebElement women;
-	private WebElement xpathSearchEmpty;
+	private By womenFound;
 	private int cantProd;
 	private int cantProdList;
+	private List<WebElement> productCount;
 	private String productNotFound;
-	private By womenFound;
 	private String womenTextParameter;
-	
-	
+	private String womenOfPage;
+	private String dressCantInfoUpperField;
+	private String dressCantInfoLowerField;
+	private String textInEmptyBox;
+	private WebDriver driver;
+	private WebElement women;
+	private WebElement xpathSearchEmpty;
 	
 	public PageSearch (WebDriver driver) {
 		this.driver = driver;
@@ -54,20 +54,28 @@ public class PageSearch {
 				String dressText = "dress";
 				driver.findElement(searchField).sendKeys(searchText);
 				driver.findElement(searchButton).click();
-				if (womenTest.equalsIgnoreCase(searchText)) {
-					women = driver.findElement(womenFound);
-					womenTextParameter = searchText;
-					}
-				if (dressText.equalsIgnoreCase(searchText)) {
-				productCount = driver.findElements(producListDress);
-				}else{
-					productNotFound = driver.findElement(productNFound).getText();
-				}
+					if (womenTest.equalsIgnoreCase(searchText)) {
+						women = driver.findElement(womenFound);
+						womenTextParameter = searchText;
+						WebDriverWait wait = new WebDriverWait(driver, 12);
+						WebElement womenWait = wait.until(ExpectedConditions.visibilityOf(women));
+						womenOfPage = womenWait.getText();
+						}
+					if (dressText.equalsIgnoreCase(searchText)) {
+						productCount = driver.findElements(producListDress);
+						WebDriverWait wait = new WebDriverWait(driver,12);
+						List<WebElement> dressCantFields = wait.until(ExpectedConditions.visibilityOfAllElements(productCountDress()));
+						dressCantInfoUpperField = dressCantFields.get(0).getText();
+						dressCantInfoLowerField = dressCantFields.get(1).getText();
+							} else {
+								productNotFound = driver.findElement(productNFound).getText();
+							}
 			}
 			
 			public void search () {
 				driver.findElement(searchButton).submit();
 				xpathSearchEmpty = driver.findElement(emptyField);
+				textInEmptyBox = emptyBoxText().getText();
 			}
 			
 			public void searchVerifCant (String searchText, int cantProd){
@@ -83,11 +91,15 @@ public class PageSearch {
 				cantProdList = webElementList.size();
 			}
 			
-			public List<WebElement> productCountDress () {return productCount;}
-			public WebElement women() {return women;}
-			public WebElement emptyBoxText() {return xpathSearchEmpty;}
 			public int cantProdList(){return cantProdList;}
 			public int cantProd() {return cantProd;}
+			public List<WebElement> productCountDress () {return productCount;}
 			public String productNotFound() {return productNotFound;}
 			public String womenText() {return womenTextParameter;}
+			public String womenTextOfPage() {return womenOfPage;}
+			public String dressCantInfoUpperField() {return dressCantInfoUpperField;}
+			public String dressCantInfoLowerField() {return dressCantInfoLowerField;}
+			public String textInEmptyBox() {return textInEmptyBox;}
+			public WebElement women() {return women;}
+			public WebElement emptyBoxText() {return xpathSearchEmpty;}
 }
